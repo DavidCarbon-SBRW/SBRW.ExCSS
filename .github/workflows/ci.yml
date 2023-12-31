@@ -1,23 +1,19 @@
-name: continuous-integration
-run-name: Build pipeline after ${{github.event_name}} by @${{ github.actor }}
-
+name: Build Status - Development
 on:
-  workflow_dispatch:
-
   push:
     branches:
-      - master
-      - feature/**
-      - bugfix/**
-
+    - development
   pull_request:
     branches:
-      - feature/**
-      - bugfix/**
-
+    - development
 jobs:
-  continuous-integration:
-    uses: ./.github/workflows/build.yml
-    with:
-      pack: false
-    secrets: inherit
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+    - name: Branch Checkout
+      uses: actions/checkout@v2.4.0
+    - name: Build
+      run: dotnet build --configuration Release
+    - name: Test
+      run: dotnet test --configuration Release --no-build

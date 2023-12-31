@@ -1,19 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <AssemblyName>ExCSS.Tests</AssemblyName>
-    <PackageId>ExCSS.Tests</PackageId>
+    <AssemblyName>SBRW.ExCSS.Tests</AssemblyName>
+    <PackageId>SBRW.ExCSS.Tests</PackageId>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>ExCSS.Tests.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>SBRW.ExCSS.Tests.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ExCSS\ExCSS.csproj" />
+    <ProjectReference Include="..\ExCSS\SBRW.ExCSS.csproj" />
   </ItemGroup>
 
   <ItemGroup>

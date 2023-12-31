@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<LangVersion>9.0</LangVersion>
+		<TargetFrameworks>net7.0;net6.0;netcoreapp3.1;net45;net461;net48;netstandard2.1;netstandard2.0</TargetFrameworks>
+		<Version>0.3.8</Version>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Title>ExCSS .NET Stylesheet Parser</Title>
+		<Authors>Tyler Brinks</Authors>
+		<Company>Tyler Brinks</Company>
+		<Copyright>Tyler Brinks</Copyright>
+		<Description>
+			ExCSS is a CSS 2.1 and CSS 3 parser for .NET. 
+			ExCSS makes it easy to read and parse stylesheets into a friendly object model with full LINQ support.
+		</Description>
+		<PackageProjectUrl>https://github.com/DavidCarbon-SBRW/SBRW.ExCSS</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageReadmeFile>readme.md</PackageReadmeFile>
+        <RespositoryType>git</RespositoryType>
+        <RepositoryUrl>https://github.com/DavidCarbon-SBRW/SBRW.ExCSS</RepositoryUrl>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+		<IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+		<PackageIcon>Logo_512.png</PackageIcon>
+		<!-- Required: Full Debugging -->
+		<DebugType>full</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+		<!-- Required: Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<!-- Required: Build symbol package (.snupkg) to distribute the PDB containing Source Link -->
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<!-- Required: Include symbols files if Self-Hosted Nuget Feed does not support symbol packages -->
+		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+		<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>ExCSS.snk</AssemblyOriginatorKeyFile>
+	
+</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="ExCSS.snk" />
+		<None Include="Resources\Icon\Logo_512.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\readme.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="if &quot;$(Configuration)&quot; == &quot;Release&quot; (&#xD;&#xA;if exist &quot;$(SolutionDir)Keys\Launcher.p12&quot; (&quot;C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe&quot; sign /f &quot;$(SolutionDir)Keys\Launcher.p12&quot; /p &quot;Launcher Development CRT&quot; /d &quot;Soapbox Race World&quot; /du &quot;https://soapboxrace.world&quot; /tr http://timestamp.digicert.com /td SHA256 &quot;$(TargetPath)&quot;)&#xD;&#xA;if exist &quot;$(SolutionDir)Keys\Launcher.p12&quot; (&quot;C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe&quot; sign /f &quot;$(SolutionDir)Keys\Launcher.p12&quot; /p &quot;Launcher Development CRT&quot; /d &quot;Soapbox Race World&quot; /du &quot;https://soapboxrace.world&quot; /tr http://timestamp.digicert.com /td SHA256 &quot;$(TargetDir)SBRW.*.dll&quot;)&#xD;&#xA;)&#xD;&#xA;" />
+	</Target>
+
+</Project>
