@@ -405,7 +405,11 @@ namespace ExCSS
         {
             return _mappings.TryGetValue(name, out var mapping)
                 ? mapping
+#if NET46_OR_GREATER || NET5_0_OR_GREATER || NETCOREAPP3_0_OR_GREATER || NETSTANDARD2_0_OR_GREATER
                 : Array.Empty<string>();
+#else
+                : new string[0];
+#endif
         }
 
         public IEnumerable<string> GetShorthands(string name)
